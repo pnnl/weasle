@@ -1,0 +1,12 @@
+{
+    "status": {
+        "r000001": {
+            "soc": 136.8,
+            "temp": 20,
+            "dispatch": 0,
+            "degradation": []
+        }
+    },
+    "ledger": {},
+    "settlement": {}
+}
