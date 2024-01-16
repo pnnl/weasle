@@ -151,8 +151,8 @@ def validate_virtual(offer, time_step, rlist, times, found_errors):
 
 def validate(offer, time_step, rlist, times):
     ''' Checks keys and timesteps/values for a storage offer. '''
-    offer_keys = ['cost_rgu', 'cost_rgd', 'cost_spr', 'cost_nsp', 'block_ch_mc', 'block_dc_mc', 
-                  'block_soc_mc', 'block_ch_mq', 'block_dc_mq', 'block_soc_mq', 'soc_end', 
+    offer_keys = ['cost_rgu', 'cost_rgd', 'cost_spr', 'cost_nsp', 'block_ch_mc', 'block_dc_mc',
+                  'block_soc_mc', 'block_ch_mq', 'block_dc_mq', 'block_soc_mq', 'soc_end',
                   'bid_soc', 'init_en', 'init_status', 'ramp_up', 'ramp_dn', 'socmax', 'socmin',
                   'soc_begin', 'eff_ch', 'eff_dc', 'chmax', 'dcmax']
     use_time = [True, True, True, True, True, True, True, True, True, True, False, False, False,
@@ -213,9 +213,9 @@ def validate(offer, time_step, rlist, times):
                 print(f"Warning: Extra key '{key}' found in submitted offer. This key will be "+\
                       "ignored.")
     return found_errors
-        
+
 def print_message(found_errors, time_step):
-    if not found_errors:            
+    if not found_errors:
         print(f"Good news! Offer format appears valid for market clearing time step {time_step}")
     else:
         print("\nThe above errors were found in the formatted offer. Please address and retry.\n")
@@ -360,7 +360,8 @@ class MarketConfiguration:
         # save to json file
         uid = f"{self.name}{self._time2str(self._first_t)}"
         uid_json = f"./system_data/{uid}.json"
-        with open(uid_json, "w") as file_out:
+        cwd = os.getcwd()
+        with open(os.path.join(cwd,uid_json), "w") as file_out:
             json.dump(data_out, file_out, indent=4)
         self.logger.info(f"Saved {uid_json}")
         return uid
@@ -501,7 +502,7 @@ class MarketScheduler:
     def simulate(self):
         time = self.timekeeper
         queue = self.queue
-        
+
         # Load participant and resource information
         # participant_res = {'p00001':['T000001']} #du.load_participant_info()
         # resources_df = du.load_resource_info()
@@ -509,8 +510,8 @@ class MarketScheduler:
         # with open('offer_data/market_specification.json', "w") as fout:
         #     json.dump(mktSpec, fout, indent=4)
         # Tracker for the previous physical results and dispatch uid
-        # self.prev_mkt_uid = None 
-        # self.prev_disp_uid = None 
+        # self.prev_mkt_uid = None
+        # self.prev_disp_uid = None
         # self.dense_time = None # For settlements at five-minute increments
         time_step = 1
         while time.get_status() is not time.status.COMPLETE:
@@ -534,7 +535,7 @@ class MarketScheduler:
                 time_step += 1
             # prepare for next time interval
             time.increment_time()
-            
+
             queue.update(time.copy(), keys=cleared_mkts)
         self.logger.info("Simulation completed.")
 
@@ -547,10 +548,11 @@ class MarketScheduler:
             idx = 1
         else:
             idx = 2
-        with open(f'system_data/market{idx}.json', 'r') as f:
+        cwd = os.getcwd()
+        with open(os.path.join(cwd,f'system_data/market{idx}.json'), 'r') as f:
             market_dict = json.load(f)
             market_json = json.dumps(market_dict)
-        with open(f'system_data/resources{idx}.json', 'r') as f:
+        with open(os.path.join(cwd,f'system_data/resources{idx}.json'), 'r') as f:
             resource_dict = json.load(f)
             resource_json = json.dumps(resource_dict)
         if not os.path.exists(pdir):
@@ -570,11 +572,11 @@ class MarketScheduler:
                 exit(0)
         else:
             raise ValueError(f"No launcher built yet for coding language {language}.")
-        
+
         rlist = [r for r in resource_dict['status'].keys()]
         times = [t for t in market_dict['intervals']]
         return rlist, times
-            
+
     def validate_offers(self, pid, rlist, time_step, times):
         '''
         Checks the submitted offer and returns a message if any formatting errors are found.
@@ -591,7 +593,7 @@ class MarketScheduler:
                 errs = validate(offer_data, time_step, rlist, times)
                 errs = validate_virtual(offer_data, time_step, rlist, times, errs)
                 print_message(errs, time_step)
-                        
+
     # def send_history(self, uid):
     #     '''Sends a formatted history.json file to the offer_data directory'''
     #     hist_keys = ['actual', 'delta', 'fwd_en', 'fwd_nsp', 'fwd_rgd', 'fwd_rgu', 'fwd_spr', 'lmp',
@@ -642,10 +644,10 @@ def test_scheduler(args):
     mkt_types = ['TS', 'MS', 'RHF']
     if mkt_type not in mkt_types:
         raise ValueError(f'Input mkt_type {mkt_type} is not a valid choice. Enter one of: "TS", "MS", or "RHF".')
-    scheduler = MarketScheduler(mkt_type, start=now, end=then, language=language, 
+    scheduler = MarketScheduler(mkt_type, start=now, end=then, language=language,
                                 alg_name=alg_name)
     scheduler.simulate()
-  
+
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
     parser.add_argument('-m', '--mkt_type', type=str, default='TS',
