@@ -1,12 +1,19 @@
 {
     "status": {
-        "r000001": {
-            "soc": 136.8,
-            "temp": 20,
-            "dispatch": 0,
-            "degradation": []
+        "R00229": {
+            "soc": 500.0,
+            "temp": 20.0,
+            "dispatch": 0.0,
+            "degradation": {}
         }
     },
     "ledger": {},
-    "settlement": {}
+    "settlement": {},
+    "schedule": {},
+    "score": {
+        "net_revenue": {},
+        "degradation_cost": {},
+        "profit": {},
+        "current": 0
+    }
 }
