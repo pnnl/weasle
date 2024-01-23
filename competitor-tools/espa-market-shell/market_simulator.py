@@ -574,7 +574,7 @@ class MarketScheduler:
             raise ValueError(f"No launcher built yet for coding language {language}.")
 
         rlist = [r for r in resource_dict['status'].keys()]
-        times = [t for t in market_dict['intervals']]
+        times = [t for t in market_dict['timestamps']]
         return rlist, times
 
     def validate_offers(self, pid, rlist, time_step, times):
