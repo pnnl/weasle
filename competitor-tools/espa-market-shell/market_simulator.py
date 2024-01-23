@@ -590,6 +590,8 @@ class MarketScheduler:
             # Open the JSON file and load its contents
             with open(files[0], 'r') as file:
                 offer_data = json.load(file)
+                rlist = [k for k in offer_data.keys()]
+                rlist = [rlist[0]]
                 errs = validate(offer_data, time_step, rlist, times)
                 errs = validate_virtual(offer_data, time_step, rlist, times, errs)
                 print_message(errs, time_step)

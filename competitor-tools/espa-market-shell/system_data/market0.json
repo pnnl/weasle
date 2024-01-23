@@ -237,7 +237,7 @@
         ]
     },
     "history": null,
-    "prev_cleared": {
+    "previous": {
         "prev_uid": "TSDAM201801280000",
         "times": [
             "201801280000",
