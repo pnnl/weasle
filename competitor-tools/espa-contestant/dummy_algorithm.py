@@ -232,16 +232,16 @@ if __name__ == '__main__':
                 max_dict[mx][t] = 125
 
         constants = {}
-        constants['soc_begin'] = 133.33
+        constants['soc_begin'] = 128
         constants['init_en'] = 0
         constants['init_status'] = 0
         constants['ramp_dn'] = 9999
         constants['ramp_up'] = 9999
-        constants['socmax'] = 633.33
-        constants['socmin'] = 133.33
+        constants['socmax'] = 608
+        constants['socmin'] = 128
         constants['eff_ch'] = 0.892
         constants['eff_dc'] = 1.0
-        constants['soc_end'] = 133.33
+        constants['soc_end'] = 128
         constants['bid_soc'] = False
 
         # Pacakge the dictionaries into an output formatted dictionary
@@ -363,16 +363,16 @@ if __name__ == '__main__':
                 max_dict[mx][t] = 125
 
         constants = {}
-        constants['soc_begin'] = 133.33
+        constants['soc_begin'] = 128
         constants['init_en'] = 0
         constants['init_status'] = 0
         constants['ramp_dn'] = 9999
         constants['ramp_up'] = 9999
-        constants['socmax'] = 633.33
-        constants['socmin'] = 133.33
+        constants['socmax'] = 608
+        constants['socmin'] = 128
         constants['eff_ch'] = 0.892
         constants['eff_dc'] = 1.0
-        constants['soc_end'] = 133.33
+        constants['soc_end'] = 128
         constants['bid_soc'] = True
 
         # Pacakge the dictionaries into an output formatted dictionary
