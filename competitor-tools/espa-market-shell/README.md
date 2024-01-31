@@ -7,9 +7,10 @@ dummy values) to the correct directories, then validates that the
 offer file submitted by your algorithm is in the correct format.
 
 To test:
-    1. make a directory in offer_data called 'participant_p00001'.
-    2. Place your algorithm in 'offer_data/participant_p00001'.
-    3. Run market_simulator.py -a [name_of_your_algorithm.py]
+
+1. make a directory in offer_data called 'participant_p00001'.
+2. Place your algorithm in 'offer_data/participant_p00001'.
+3. Run market_simulator.py -a [name_of_your_algorithm.py]
 
 The market simulator accepts input other input arguments to
 change the market type and duration of the test.
