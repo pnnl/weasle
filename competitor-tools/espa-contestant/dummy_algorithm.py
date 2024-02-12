@@ -178,7 +178,7 @@ if __name__ == '__main__':
     uid =market_info["uid"]
     market_type = market_info["market_type"]
     if market_type == 'DAM':
-        prices = market_info["previous"]["prices"]["EN"]
+        prices = market_info["previous"]["prices"]["EN"]["CISD"]
         required_times = [t for t in market_info['timestamps']]
         price_dict = {required_times[i]:prices[i] for i in range(len(required_times))}
         # Writing prices to a local JSON file
