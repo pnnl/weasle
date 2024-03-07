@@ -1,0 +1,22 @@
+{
+    "pid": "p00002",
+    "rid": "R00229",
+    "time_limit": 720,
+    "status": {
+        "R00229": {
+            "soc": 480.0,
+            "temp": 20.0,
+            "dispatch": 0.0,
+            "degradation": {}
+        }
+    },
+    "ledger": {},
+    "settlement": {},
+    "schedule": {},
+    "score": {
+        "net_revenue": {},
+        "degradation_cost": {},
+        "profit": {},
+        "current": 0
+    }
+}
