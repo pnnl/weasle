@@ -551,16 +551,23 @@ class MarketScheduler:
         cwd = os.getcwd()
         with open(os.path.join(cwd,f'system_data/market{idx}.json'), 'r') as f:
             market_dict = json.load(f)
-            market_json = json.dumps(market_dict)
+            # market_json = json.dumps(market_dict)
         with open(os.path.join(cwd,f'system_data/resources{idx}.json'), 'r') as f:
             resource_dict = json.load(f)
-            resource_json = json.dumps(resource_dict)
+            # resource_json = json.dumps(resource_dict)
+        # Save market resource files
+        resource_file = os.path.join(cwd, pdir, 'resource.json')
+        with open(resource_file, 'w') as f:
+            json.dump(resource_dict, f, indent=4)
+        market_file = os.path.join(cwd, pdir, 'market.json')
+        with open(market_file, 'w') as f:
+            json.dump(market_dict, f, indent=4)
         if not os.path.exists(pdir):
             os.makedirs(pdir)
         if language.lower() == 'python':
             try:
-                algorithm = subprocess.run(['python',f'{self.alg_name}', f'{time_step}', f'{market_json}',
-                                        f'{resource_json}'], capture_output=True, text=True,
+                algorithm = subprocess.run(['python',f'{self.alg_name}', f'{time_step}', f'{market_file}',
+                                        f'{resource_file}'], capture_output=True, text=True,
                                        check=True, cwd=os.path.join(os.getcwd(),pdir))
                 print(algorithm.stdout)
                 print(algorithm.stderr)
