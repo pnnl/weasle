@@ -17,10 +17,6 @@ class NpEncoder(json.JSONEncoder):
             return obj.tolist()
         return json.JSONEncoder.default(self, obj)
 
-
-
-
-
 #calculate the opportunity cost for charge/discharge in the DA market
 def da_offers(market_type, prices):
     # battery parameters
@@ -156,7 +152,6 @@ def da_offers(market_type, prices):
     offer_dis=pd.concat([offer['Time'], offer['disch cost'], quantity], axis=1,ignore_index=True)
     offer_dis.columns= ['Time','COST','MW']
 
-
     return offer_ch, offer_dis,soc
 
 if __name__ == '__main__':
@@ -179,10 +174,10 @@ if __name__ == '__main__':
         resource_info = json.load(f)
 
     # Read in information from the market
-    uid =market_info["uid"]
+    uid = market_info["uid"]
     market_type = market_info["market_type"]
-    if market_type == 'DAM':
-        prices = market_info["previous"]["prices"]["EN"]["CISD"]
+    if 'DAM' in market_type:
+        prices = market_info["previous"][market_type]["prices"]["EN"]["CISD"]
         required_times = [t for t in market_info['timestamps']]
         price_dict = {required_times[i]:prices[i] for i in range(len(required_times))}
         # Writing prices to a local JSON file
@@ -259,7 +254,7 @@ if __name__ == '__main__':
         # Save as json file in the current directory with name offer_{time_step}.json
         with open(f'offer_{time_step}.json', 'w') as f:
             json.dump(offer_out_dict, f, indent=4, cls=NpEncoder)
-    elif market_type == 'RTM':
+    elif 'RTM' in market_type:
         price_path = "da_prices.json"
         with open(price_path, "r") as file:
             prices = json.load(file)
