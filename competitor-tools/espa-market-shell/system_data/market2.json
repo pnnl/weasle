@@ -76,7 +76,8 @@
         5,
         5
     ],
-    "market_type": "RTM",
+    "market_type": "TSRTM",
+    "current_time": "TSRTM202401280000",
     "interval_type": [
         [
             "PHYS"

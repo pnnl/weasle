@@ -76,7 +76,8 @@
         60,
         60
     ],
-    "market_type": "DAM",
+    "market_type": "TSDAM",
+    "current_time": "TSDAM202401270900",
     "interval_type": [
         [
             "FWD",
