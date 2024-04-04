@@ -1,6 +1,7 @@
 {
     "pid": "p00002",
     "rid": "R00229",
+    "bus": "CISD",
     "time_limit": 720,
     "status": {
         "R00229": {
